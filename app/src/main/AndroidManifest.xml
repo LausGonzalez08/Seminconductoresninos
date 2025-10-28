@@ -13,7 +13,8 @@
         android:theme="@style/Theme.Seminconductoresninos">
     <activity
         android:name=".Main"
-        android:exported="true">
+        android:exported="true"
+        tools:ignore="Instantiatable">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
