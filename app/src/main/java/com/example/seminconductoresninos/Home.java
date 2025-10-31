@@ -1,31 +1,28 @@
 package com.example.seminconductoresninos;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Home extends AppCompatActivity {
-    Spinner Edad;
+
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
-        // 🔽 Aquí sí puedes vincular la vista
-        Edad = findViewById(R.id.spinnerEdad);
+        textView = findViewById(R.id.textView);
 
-        // Configurar el adaptador del spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_spinner_item,
-                new String[]{"Seleccionar", "10", "11", "12", "13", "14", "15", "16", "17", "18"}
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Edad.setAdapter(adapter);
+        // Recuperar los datos guardados en User.java
+        SharedPreferences prefs = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        String nombre = prefs.getString("nombre", "Usuario");
+
+        // Mostrar saludo
+        textView.setText("Hola " + nombre + " 👋");
     }
 }

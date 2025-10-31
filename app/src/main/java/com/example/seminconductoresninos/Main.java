@@ -23,7 +23,7 @@ public class Main extends AppCompatActivity {
                 }
                 catch (InterruptedException e){e.printStackTrace();}
                 finally {
-                    Intent intent = new Intent(Main.this, Home.class);
+                    Intent intent = new Intent(Main.this, User.class);
                     startActivity(intent);
                     finish();
                 }
