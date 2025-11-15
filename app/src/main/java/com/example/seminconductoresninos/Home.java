@@ -1,28 +1,63 @@
 package com.example.seminconductoresninos;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
-
+import androidx.viewpager2.widget.ViewPager2;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Home extends AppCompatActivity {
 
     TextView textView;
+    private ViewPager2 viewPager;
+    private ScreenSlidePagerAdapter pagerAdapter;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        prefs = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE);
+        boolean hasSeenIntro = prefs.getBoolean("hasSeenIntro", false);
+
+        // Si ya vio la introducción, saltar directamente a MainActivity
+        if (hasSeenIntro) {
+            startMainActivity();
+            return; // Importante: salir del onCreate
+        }
+
+        // Si no ha visto la introducción, mostrar las pantallas
         setContentView(R.layout.activity_home);
 
         textView = findViewById(R.id.textView);
+        viewPager = findViewById(R.id.viewPager);
+        pagerAdapter = new ScreenSlidePagerAdapter(this);
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.setUserInputEnabled(false); // Deshabilitar swipe
+    }
 
-        // Recuperar los datos guardados en User.java
-        SharedPreferences prefs = getSharedPreferences("UserData", Context.MODE_PRIVATE);
-        String nombre = prefs.getString("nombre", "Usuario");
+    public void goToNextPage() {
+        int currentItem = viewPager.getCurrentItem();
+        if (currentItem < pagerAdapter.getItemCount() - 1) {
+            viewPager.setCurrentItem(currentItem + 1, true);
+        } else {
+            // Cuando llega a la última pantalla, marcar como visto y ir a MainActivity
+            markIntroAsSeen();
+            startMainActivity();
+        }
+    }
 
-        // Mostrar saludo
-        textView.setText("Hola " + nombre + " 👋");
+    public void markIntroAsSeen() {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("hasSeenIntro", true);
+        editor.apply();
+    }
+
+    public void startMainActivity() {
+        Intent intent = new Intent(this, HomeMain.class);
+        startActivity(intent);
+        finish(); // Cerrar Home para que no pueda volver atrás
     }
 }
