@@ -81,17 +81,18 @@
                     android:contentDescription="Ilustración del concepto" />
 
                 <TextView
+                    android:id="@+id/burbuja"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center_horizontal"
                     android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_background_white"
                     android:paddingHorizontal="24dp"
                     android:paddingVertical="8dp"
-                    android:background="@drawable/rounded_background_white"
                     android:text="¿Qué es un circuito?"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    android:textStyle="bold" />
 
             </FrameLayout>
 
