@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/conceptToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/closeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:contentDescription="Cerrar Concepto" />
+
+        <TextView
+            android:id="@+id/conceptTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:text="CONCEPTO 1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <ImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:contentDescription="Buscar" />
+
+        <ImageButton
+            android:id="@+id/menuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more_vert"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:contentDescription="Opciones" />
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/conceptToolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black">
+
+                <ImageView
+                    android:id="@+id/conceptImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo"
+                    android:contentDescription="Ilustración del concepto" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:paddingHorizontal="24dp"
+                    android:paddingVertical="8dp"
+                    android:background="@drawable/rounded_background_white"
+                    android:text="¿Qué es un circuito?"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/conceptBodyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/dark_gray"
+                android:lineSpacingExtra="4dp"
+                android:text="@string/circuito_lorem_ipsum" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="end">
+
+                <Button
+                    android:id="@+id/activityButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ACTIVIDAD"
+                    android:textAllCaps="false"
+                    android:backgroundTint="@color/blue_primary"
+                    android:textColor="@color/white"
+                    android:paddingHorizontal="24dp"
+                    android:layout_marginEnd="16dp" />
+
+                <Button
+                    android:id="@+id/finishButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CERRAR"
+                    android:textAllCaps="false"
+                    android:backgroundTint="@color/gray"
+                    android:textColor="@color/white"
+                    android:paddingHorizontal="24dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Seminconductoresninos</string>
+
+    <string name="circuito_lorem_ipsum">
+        Imagina que la electricidad es como un equipo de atletas corredores muy pequeños y llenos de energía. Para que estos corredores puedan hacer un trabajo, como encender una bombilla o hacer funcionar un videojuego, deben tener un camino seguro y cerrado. Un circuito (o camino) es justo eso: es como una pista de carreras circular y cerrada, pero para la electricidad. Para que funcione, necesita cuatro cosas importantes: **La Fuente:** Es como el punto de inicio, donde está la máquina que da energía a los corredores. Les da el impulso para empezar a correr. **Los Cables:** Son las "pistas" por donde viajan los corredores de energía. Suelen ser de metal, como el cobre, porque este material deja pasar muy bien la electricidad. **La Bombilla o Foco:** Es la "meta" o el trabajo que queremos que hagan. Es lo que encienden o hacen girar. Cuando la electricidad pasa por la bombilla, la hace brillar. Cuando pasa por el foco, lo enciende. Cuando se prende la bombilla, decimos que **el circuito está cerrado**. Cuando el interruptor está **cerrado**, la electricidad puede viajar libremente y el dispositivo funciona. Cuando está **abierto**, el camino se interrumpe y la electricidad no puede pasar, haciendo que el dispositivo se apague. ¿Dónde podemos encontrar circuitos? ¡En todas partes! Tu casa está llena de ellos, desde el control remoto hasta el refrigerador, un videojuego, un despertador, el teléfono y la computadora, entre muchos otros.
+    </string>
+
 </resources>

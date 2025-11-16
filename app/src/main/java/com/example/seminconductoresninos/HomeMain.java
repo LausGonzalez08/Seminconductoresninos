@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
+// Importación duplicada eliminada: import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeMain extends AppCompatActivity {
     private LinearLayout topicsContainer;
@@ -106,12 +106,19 @@ public class HomeMain extends AppCompatActivity {
 
         // Configurar clic en toda la tarjeta
         topicCard.setOnClickListener(v -> {
-            showToast("Abriendo: " + title);
+            // Se utiliza un Intent para pasar de HomeMain a la nueva actividad
+            // Nota: El nombre de la actividad debe ser ConceptDetailActivity o el que uses (Leccion1.class)
+            android.content.Intent intent = new android.content.Intent(this, Leccion1.class);
+
+            // Pasar el título para cargar el contenido dinámicamente
+            intent.putExtra("CONCEPT_TITLE", title);
+
+            startActivity(intent);
         });
 
-        // Agregar al contenedor
+        // Agregar al contenedor (Única vez)
         topicsContainer.addView(topicCard);
-    }
+    } // <--- ¡Cierre ÚNICO y CORRECTO del método!
 
     private void handleTopicAction(String category, String action) {
         switch (action) {
@@ -130,4 +137,4 @@ public class HomeMain extends AppCompatActivity {
     private void showToast(String message) {
         android.widget.Toast.makeText(this, message, android.widget.Toast.LENGTH_SHORT).show();
     }
-}
+} // <--- Cierre de la clase HomeMain
