@@ -37,13 +37,14 @@
             android:textColor="@color/black" />
 
         <ImageButton
-            android:id="@+id/searchButton"
+            android:id="@+id/favoriteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_search"
+            android:src="@drawable/ic_favorite_border"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="8dp"
-            android:contentDescription="Buscar" />
+            android:contentDescription="Marcar como favorito"
+        />
 
         <ImageButton
             android:id="@+id/menuButton"
@@ -119,12 +120,12 @@
                     android:id="@+id/activityButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ACTIVIDAD"
-                    android:textAllCaps="false"
+                    android:layout_marginEnd="16dp"
                     android:backgroundTint="@color/blue_primary"
-                    android:textColor="@color/white"
                     android:paddingHorizontal="24dp"
-                    android:layout_marginEnd="16dp" />
+                    android:text="COMPLETAR"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/finishButton"

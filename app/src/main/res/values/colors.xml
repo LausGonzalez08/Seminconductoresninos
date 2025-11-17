@@ -15,5 +15,6 @@
     <color name="green_completed">#4CAF50</color>
     <color name="blue_in_progress">#2196F3</color>
     <color name="orange_locked">#FF9800</color>
+    <color name="very_light_blue">#F5FBFF</color>
 
 </resources>
