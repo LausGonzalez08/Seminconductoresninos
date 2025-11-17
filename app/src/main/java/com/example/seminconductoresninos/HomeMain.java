@@ -170,7 +170,22 @@ public class HomeMain extends AppCompatActivity {
     }
 
     private void openTopicActivity(String topicId, String title) {
-        Intent intent = new Intent(this, Leccion1.class);
+        Intent intent;
+
+        switch (topicId) {
+            case TOPIC_CIRCUITOS:
+                intent = new Intent(this, Leccion1.class);
+                break;
+            case TOPIC_COMPONENTES:
+                intent = new Intent(this, ComponentesActivity.class);
+                break;
+            case TOPIC_ENERGIA:
+                intent = new Intent(this, Leccion1.class);
+                break;
+            default:
+                intent = new Intent(this, Leccion1.class);
+        }
+
         intent.putExtra("CONCEPT_TITLE", title);
         intent.putExtra("TOPIC_ID", topicId);
         startActivity(intent);

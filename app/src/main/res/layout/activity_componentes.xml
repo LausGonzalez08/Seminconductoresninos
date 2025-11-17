@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Toolbar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+
+                <ImageButton
+                    android:id="@+id/backButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Volver" />
+
+                <TextView
+                    android:id="@+id/activityTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:text="Identifica Componentes"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <ImageButton
+                    android:id="@+id/favoriteButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_favorite_border"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Marcar como favorito" />
+
+            </LinearLayout>
+
+            <!-- Instrucciones -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Puedes identificar componentes de circuitos?\nSelecciona la respuesta correcta en cada pregunta."
+                android:textSize="16sp"
+                android:textColor="@color/dark_gray"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Progreso -->
+            <TextView
+                android:id="@+id/progressText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pregunta 1 de 5"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/blue_primary"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Pregunta -->
+            <TextView
+                android:id="@+id/questionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Qué componente proporciona energía al circuito?"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:padding="16dp"
+                android:background="@drawable/card_background"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Opciones -->
+            <LinearLayout
+                android:id="@+id/optionsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp">
+
+                <Button
+                    android:id="@+id/option1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Opción 1"
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/light_gray"
+                    android:textColor="@color/black"
+                    android:paddingVertical="12dp" />
+
+                <Button
+                    android:id="@+id/option2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Opción 2"
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/light_gray"
+                    android:textColor="@color/black"
+                    android:paddingVertical="12dp" />
+
+                <Button
+                    android:id="@+id/option3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Opción 3"
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/light_gray"
+                    android:textColor="@color/black"
+                    android:paddingVertical="12dp" />
+
+                <Button
+                    android:id="@+id/option4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Opción 4"
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/light_gray"
+                    android:textColor="@color/black"
+                    android:paddingVertical="12dp" />
+
+            </LinearLayout>
+
+            <!-- Resultados -->
+            <TextView
+                android:id="@+id/resultText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:lineSpacingExtra="8dp"
+                android:padding="16dp"
+                android:background="@drawable/card_background"
+                android:layout_marginBottom="24dp"
+                android:visibility="gone" />
+
+            <!-- Botones de Control -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/nextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Siguiente"
+                    android:backgroundTint="@color/blue_primary"
+                    android:textColor="@color/white"
+                    android:paddingHorizontal="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:enabled="false" />
+
+                <Button
+                    android:id="@+id/restartButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reiniciar"
+                    android:backgroundTint="@color/orange_locked"
+                    android:textColor="@color/white"
+                    android:paddingHorizontal="32dp"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/completeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Finalizar"
+                    android:backgroundTint="@color/green_completed"
+                    android:textColor="@color/white"
+                    android:paddingHorizontal="32dp"
+                    android:layout_marginStart="16dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
