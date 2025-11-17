@@ -7,21 +7,18 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 public class SafetyFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_safety, container, false);
-
         Button nextButton = view.findViewById(R.id.nextButton);
         nextButton.setOnClickListener(v -> {
             if (getActivity() instanceof Home) {
                 ((Home) getActivity()).goToNextPage();
             }
         });
-
         return view;
     }
 }

@@ -1,5 +1,4 @@
 package com.example.seminconductoresninos;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +8,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Home extends AppCompatActivity {
-
     TextView textView;
     private ViewPager2 viewPager;
     private ScreenSlidePagerAdapter pagerAdapter;
@@ -22,12 +20,10 @@ public class Home extends AppCompatActivity {
         prefs = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE);
         boolean hasSeenIntro = prefs.getBoolean("hasSeenIntro", false);
 
-        // Si ya vio la introducción, saltar directamente a MainActivity
         if (hasSeenIntro) {
             startMainActivity();
-            return; // Importante: salir del onCreate
+            return;
         }
-
         // Si no ha visto la introducción, mostrar las pantallas
         setContentView(R.layout.activity_home);
 
@@ -35,9 +31,8 @@ public class Home extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         pagerAdapter = new ScreenSlidePagerAdapter(this);
         viewPager.setAdapter(pagerAdapter);
-        viewPager.setUserInputEnabled(false); // Deshabilitar swipe
+        viewPager.setUserInputEnabled(false);
     }
-
     public void goToNextPage() {
         int currentItem = viewPager.getCurrentItem();
         if (currentItem < pagerAdapter.getItemCount() - 1) {
@@ -48,16 +43,14 @@ public class Home extends AppCompatActivity {
             startMainActivity();
         }
     }
-
     public void markIntroAsSeen() {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("hasSeenIntro", true);
         editor.apply();
     }
-
     public void startMainActivity() {
         Intent intent = new Intent(this, HomeMain.class);
         startActivity(intent);
-        finish(); // Cerrar Home para que no pueda volver atrás
+        finish();
     }
 }

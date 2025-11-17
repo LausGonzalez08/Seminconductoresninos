@@ -32,25 +32,22 @@ public class PerfilActivity extends AppCompatActivity {
         loadUserData();
         setupSwitches();
         setupProfileImage();
+        loadStatistics();
     }
 
     private void setupProfileImage() {
-        // Cargar imagen guardada si existe
+        // Cargar imagen guardada
         loadSavedProfileImage();
-
         // Hacer clickable el avatar y el texto
         profileImage.setOnClickListener(v -> showImagePickerDialog());
-
         // También el texto "Cambiar foto"
         TextView changePhotoText = findViewById(R.id.changePhotoText);
         if (changePhotoText != null) {
             changePhotoText.setOnClickListener(v -> showImagePickerDialog());
         }
     }
-
     private void showImagePickerDialog() {
         final CharSequence[] options = {"Tomar foto", "Elegir de galería", "Cancelar"};
-
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
         builder.setTitle("Elige una opción");
         builder.setItems(options, (dialog, item) -> {
@@ -107,7 +104,6 @@ public class PerfilActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (resultCode == RESULT_OK) {
             if (requestCode == PICK_IMAGE_REQUEST && data != null && data.getData() != null) {
                 // Imagen seleccionada de galería
@@ -116,7 +112,6 @@ public class PerfilActivity extends AppCompatActivity {
                 saveProfileImageUri(selectedImageUri.toString());
 
             } else if (requestCode == TAKE_PHOTO_REQUEST) {
-                // Foto tomada con cámara
                 File file = new File(currentPhotoPath);
                 if (file.exists()) {
                     Uri photoUri = Uri.fromFile(file);
@@ -126,7 +121,6 @@ public class PerfilActivity extends AppCompatActivity {
             }
         }
     }
-
     private void saveProfileImageUri(String imageUri) {
         SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -134,11 +128,9 @@ public class PerfilActivity extends AppCompatActivity {
         editor.apply();
         Toast.makeText(this, "Foto de perfil actualizada", Toast.LENGTH_SHORT).show();
     }
-
     private void loadSavedProfileImage() {
         SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
         String imageUriString = prefs.getString("profileImageUri", null);
-
         if (imageUriString != null) {
             Uri imageUri = Uri.parse(imageUriString);
             try {
@@ -149,58 +141,92 @@ public class PerfilActivity extends AppCompatActivity {
             }
         }
     }
-
-    // ... (el resto de los métodos permanece igual)
     private void setupNavigation() {
         LinearLayout navTemas = findViewById(R.id.nav_temas);
         LinearLayout navPerfil = findViewById(R.id.nav_perfil);
         LinearLayout navFavoritos = findViewById(R.id.nav_favoritos);
-
         navTemas.setOnClickListener(v -> {
             finish();
         });
-
         navFavoritos.setOnClickListener(v -> {
             Toast.makeText(this, "Ir a Favoritos", Toast.LENGTH_SHORT).show();
         });
     }
-
     private void loadUserData() {
         SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
         String nombre = prefs.getString("nombre", "Usuario");
-
+        String edad = prefs.getString("edad", "No especificada");
         TextView userName = findViewById(R.id.userName);
+        TextView userAge = findViewById(R.id.userAge);
         userName.setText(nombre);
+        userAge.setText(edad + " años");
     }
+    private void loadStatistics() {
+        SharedPreferences progressPrefs = getSharedPreferences("topic_progress", MODE_PRIVATE);
+        SharedPreferences favoritesPrefs = getSharedPreferences("favorites", MODE_PRIVATE);
+        //temas completados
+        int completedTopics = 0;
+        String[] topicIds = {"circuitos", "componentes", "energia"};
+        for (String topicId : topicIds) {
+            int state = progressPrefs.getInt(topicId, 0);
+            if (state == 2) {
+                completedTopics++;
+            }
+        }
 
+        // Calcular puntos
+        int userPoints = completedTopics * 50; // 50 puntos por tema completado
+        // Calcular progreso general
+        int totalTopics = topicIds.length;
+        int progressPercentage = (completedTopics * 100) / totalTopics;
+        // Actualizar la interfaz
+        TextView completedTopicsText = findViewById(R.id.completedTopics);
+        TextView userPointsText = findViewById(R.id.userPoints);
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+        TextView progressText = findViewById(R.id.progressText);
+        if (completedTopicsText != null) {
+            completedTopicsText.setText(String.valueOf(completedTopics));
+        }
+        if (userPointsText != null) {
+            userPointsText.setText(userPoints + " puntos");
+        }
+        if (progressBar != null) {
+            progressBar.setProgress(progressPercentage);
+        }
+        if (progressText != null) {
+            progressText.setText(progressPercentage + "% completado");
+        }
+        // Tiempo de estudio (puedes implementar tracking de tiempo si lo deseas)
+        TextView studyTimeText = findViewById(R.id.studyTime);
+        if (studyTimeText != null) {
+            // Por ahora, un cálculo simple basado en temas completados
+            int studyMinutes = completedTopics * 15; // 15 minutos por tema
+            studyTimeText.setText(studyMinutes + " min");
+        }
+    }
     private void setupSwitches() {
         SwitchCompat soundSwitch = findViewById(R.id.soundSwitch);
         SwitchCompat notificationsSwitch = findViewById(R.id.notificationsSwitch);
         SwitchCompat kidModeSwitch = findViewById(R.id.kidModeSwitch);
-
         // Cargar preferencias guardadas
         SharedPreferences prefs = getSharedPreferences("AppSettings", MODE_PRIVATE);
         soundSwitch.setChecked(prefs.getBoolean("sound", true));
         notificationsSwitch.setChecked(prefs.getBoolean("notifications", true));
         kidModeSwitch.setChecked(prefs.getBoolean("kidMode", true));
-
         // Guardar cambios
         soundSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             saveSetting("sound", isChecked);
         });
-
         notificationsSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             saveSetting("notifications", isChecked);
         });
-
         kidModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             saveSetting("kidMode", isChecked);
         });
     }
-
     private void saveSetting(String key, boolean value) {
         SharedPreferences.Editor editor = getSharedPreferences("AppSettings", MODE_PRIVATE).edit();
         editor.putBoolean(key, value);
         editor.apply();
     }
-    }
+}

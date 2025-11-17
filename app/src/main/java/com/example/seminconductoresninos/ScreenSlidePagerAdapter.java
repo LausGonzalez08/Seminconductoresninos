@@ -5,11 +5,9 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class ScreenSlidePagerAdapter extends FragmentStateAdapter {
-
     public ScreenSlidePagerAdapter(FragmentActivity fa) {
         super(fa);
     }
-
     @NonNull
     @Override
     public Fragment createFragment(int position) {
@@ -24,7 +22,6 @@ public class ScreenSlidePagerAdapter extends FragmentStateAdapter {
                 return new WelcomeFragment();
         }
     }
-
     @Override
     public int getItemCount() {
         return 3;

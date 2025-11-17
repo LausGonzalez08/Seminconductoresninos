@@ -27,21 +27,6 @@
                 android:textStyle="bold"
                 android:textColor="@color/black" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TEMAS"
-                android:textSize="14sp"
-                android:textColor="@color/gray"
-                android:paddingHorizontal="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FAVORITOS"
-                android:textSize="14sp"
-                android:textColor="@color/gray" />
-
         </LinearLayout>
 
         <!-- Información del Usuario -->
@@ -100,7 +85,7 @@
                 android:id="@+id/userAge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="8 años"
+                android:text=""
                 android:textSize="16sp"
                 android:textColor="@color/dark_gray"
                 android:layout_marginTop="4dp" />
